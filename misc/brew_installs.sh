@@ -5,6 +5,7 @@ brew install caskroom/cask/brew-cask
 # Tmux with convenient clipboard
 brew install tmux
 brew install reattach-to-user-namespace
+brew install tmate
 
 # Docs
 brew install pandoc
