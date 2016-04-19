@@ -8,7 +8,7 @@ clean_dep:
 	rm -rf _vim/bundle/*
 
 clean: clean_dep
-	rm $(HOME)/{.bash,.vim,.bashrc,.vimrc,.gitconfig}
+	rm $(HOME)/{.bash,.vim,.bashrc,.vimrc,.tmux.conf,.gitconfig}
 
 # Bash ------------------------------------------------------------------------
 $(HOME)/.bashrc: $(CURDIR)/_bash/.bashrc
@@ -24,6 +24,10 @@ $(HOME)/.vimrc: $(CURDIR)/_vim/.vimrc
 $(HOME)/.vim: $(CURDIR)/_vim
 	ln -s $^ $@
 	vim -u _vim/.vimrc +PluginInstall +qall
+
+# Tmux ------------------------------------------------------------------------
+$(HOME)/.tmux.conf: $(CURDIR)/_tmux/.tmux.conf
+	ln -s $^ $@
 
 # Git Config ------------------------------------------------------------------
 $(HOME)/.gitconfig: $(CURDIR)/_gitconfig

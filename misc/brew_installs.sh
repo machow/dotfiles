@@ -2,6 +2,10 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 brew tap caskroom/cask
 brew install caskroom/cask/brew-cask
 
+# Tmux with convenient clipboard
+brew install tmux
+brew install reattach-to-user-namespace
+
 # Docs
 brew install pandoc
 brew install macvim
