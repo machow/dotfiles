@@ -23,10 +23,10 @@ $(HOME)/.vimrc: $(CURDIR)/_vim/.vimrc
 
 $(HOME)/.vim: $(CURDIR)/_vim
 	ln -s $^ $@
-	vim +PluginInstall +qall
+	vim -u _vim/.vimrc +PluginInstall +qall
 
 # Git Config ------------------------------------------------------------------
-$(HOME)/.gitconfig: _gitconfig
+$(HOME)/.gitconfig: $(CURDIR)/_gitconfig
 	ln -s $^ $@
 
 # Misc programming installs ---------------------------------------------------
