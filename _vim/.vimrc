@@ -25,8 +25,8 @@ let &runtimepath = printf('%s,%s,%s/after', s:portable, &runtimepath, s:portable
 " Plugins included
 " ==========================================================
 filetype off
-set rtp+=~/Desktop/dotfiles/_vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.vim/Vundle.vim
+call vundle#begin('~/.vim/bundle')
 
 " General Tools
 Plugin 'gmarik/vundle'

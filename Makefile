@@ -2,10 +2,13 @@
 #
 # make clean
 # make install
-install: $(HOME)/.bash $(HOME)/.vim $(HOME)/.vimrc
+install: $(HOME)/.bash $(HOME)/.vim $(HOME)/.vimrc $(HOME)/.gitconfig
 
-clean:
-	rm $(HOME)/{.bash,.vim,.bashrc,.vimrc}
+clean_dep:
+	rm -rf _vim/bundle/*
+
+clean: clean_dep
+	rm $(HOME)/{.bash,.vim,.bashrc,.vimrc,.gitconfig}
 
 # Bash ------------------------------------------------------------------------
 $(HOME)/.bashrc: $(CURDIR)/_bash/.bashrc
@@ -20,7 +23,7 @@ $(HOME)/.vimrc: $(CURDIR)/_vim/.vimrc
 
 $(HOME)/.vim: $(CURDIR)/_vim
 	ln -s $^ $@
-	vim -u $^/.vimrc +PluginInstall +qall
+	vim +PluginInstall +qall
 
 # Git Config ------------------------------------------------------------------
 $(HOME)/.gitconfig: _gitconfig

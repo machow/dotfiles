@@ -1,3 +1,6 @@
 [submodule "_vim/bundle/Vundle.vim"]
-	path = _vim/bundle/Vundle.vim
+	path = _vim/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule "_bash/git-aware-prompt"]
+	path = _bash/git-aware-prompt
+	url = https://github.com/jimeh/git-aware-prompt.git
