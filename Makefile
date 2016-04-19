@@ -2,31 +2,38 @@
 #
 # make clean
 # make install
-install: $(HOME)/.bash $(HOME)/.vim $(HOME)/.vimrc $(HOME)/.gitconfig
+
+ALL_FILES = $(addprefix $(HOME)/, .bash .vim .gitconfig .tmux.conf)
+
+test:
+	echo $(ALL_FILES)
+
+install: $(ALL_FILES)
 
 clean_dep:
 	rm -rf _vim/bundle/*
 
 clean: clean_dep
-	rm $(HOME)/{.bash,.vim,.bashrc,.vimrc,.tmux.conf,.gitconfig}
+	rm $(ALL_FILES)
 
 # Bash ------------------------------------------------------------------------
-$(HOME)/.bashrc: $(CURDIR)/_bash/.bashrc
+$(HOME)/.bash%: $(CURDIR)/_bash/.bash%
 	ln -s $^ $@
 
-$(HOME)/.bash: $(HOME)/.bashrc
+$(HOME)/.bash: $(HOME)/.bashrc $(HOME)/.bash_profile
 	ln -s $(CURDIR)/_bash $@
 
 # VIM -------------------------------------------------------------------------
 $(HOME)/.vimrc: $(CURDIR)/_vim/.vimrc
 	ln -s $^ $@
 
-$(HOME)/.vim: $(CURDIR)/_vim
-	ln -s $^ $@
+$(HOME)/.vim: $(CURDIR)/_vim $(HOME)/.vimrc
+	ln -s $< $@
 	vim -u _vim/.vimrc +PluginInstall +qall
 
 # Tmux ------------------------------------------------------------------------
-$(HOME)/.tmux.conf: $(CURDIR)/_tmux/.tmux.conf
+#$(HOME)/.tmux.%: $(CURDIR)/_tmux/.tmux.%
+$(HOME)/.tmux.conf: $(CURDIR)/_tmux.conf
 	ln -s $^ $@
 
 # Git Config ------------------------------------------------------------------
