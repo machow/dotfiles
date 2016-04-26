@@ -8,7 +8,10 @@ ALL_FILES = $(addprefix $(HOME)/, .bash .vim .gitconfig .tmux.conf)
 test:
 	echo $(ALL_FILES)
 
-install: $(ALL_FILES)
+install: submodules $(ALL_FILES)
+
+submodules: 
+	git submodule update --init
 
 clean_dep:
 	rm -rf _vim/bundle/*
@@ -17,7 +20,7 @@ clean: clean_dep
 	rm $(ALL_FILES)
 
 # Bash ------------------------------------------------------------------------
-$(HOME)/.bash%: $(CURDIR)/_bash/.bash%
+$(HOME)/.bash%: | $(CURDIR)/_bash/.bash%
 	ln -s $^ $@
 
 $(HOME)/.bash: $(HOME)/.bashrc $(HOME)/.bash_profile
