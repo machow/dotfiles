@@ -18,9 +18,20 @@ fi
 
 # Virtual Environments --------------------------------------------------------
 
-export WORKON_HOME="$HOME"/venv
-export PROJECT_HOME="$HOME"/Desktop
-source /usr/local/bin/virtualenvwrapper.sh
+# virtualenv wrapper
+export WORKON_HOME="$HOME"/.virtualenvs
+export PROJECT_HOME="$HOME"/venv
+source /Users/machow/anaconda/bin/virtualenvwrapper.sh
+
+# framework python for using matplotlib with mac osx
+function frameworkpython {
+    if [[ ! -z "$VIRTUAL_ENV" ]]; then
+        PYTHONHOME=$VIRTUAL_ENV /usr/bin/python "$@"
+    else
+        /usr/bin/python "$@"
+    fi
+}
+
 
 # Automatically activate Git projects' virtual environments based on the
 # directory name of the project. Virtual environment name can be overridden
