@@ -46,6 +46,7 @@ Plugin 'hdima/python-syntax'
 Plugin 'mattn/emmet-vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'valloric/MatchTagAlways'
+Plugin 'gcorne/vim-sass-lint'
 
 " YOU LEARN, YOU LEARN NOW
 " General Tools
@@ -111,6 +112,7 @@ set background=dark           " We are using dark background in vim
 set title                     " show title in console title bar
 set wildmenu                  " Menu completion in command mode on <Tab>
 set wildmode=full             " <Tab> cycles between all matching choices.
+set clipboard=unnamed         " allows copying to system clipboard
 
 " don't bell or blink
 set noerrorbells
@@ -224,7 +226,10 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " ============================================================
 " Mako/HTML
 autocmd BufNewFile,BufRead *.mako,*.mak,*.jinja2 setlocal ft=html
-autocmd FileType html,xhtml,xml,css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html,xhtml,xml,css,scss,sass setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
+" Sass/CSS
+let g:syntastic_scss_checkers=["sass_lint"]
 
 " Python
 "au BufRead *.py compiler nose
